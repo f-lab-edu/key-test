@@ -41,7 +41,6 @@ public class Base64Encode implements Encode {
         return sb.toString();
     }
 
-
     /**
      * 10진수를 2진수로 변환
      */
