@@ -13,12 +13,12 @@ public class Base62Encode implements Encode {
      * Base62 문자 집합
      * 주의 : 문자 순서 절대 변경 X
      */
-    private static final char[] toBase62 ={
-            '0','1','2','3','4','5','6','7','8','9',
-            'A','B','C','D','E','F','G','H','I','J','K','L','M',
-            'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-            'a','b','c','d','e','f','g','h','i','j','k','l','m',
-            'n','o','p','q','r','s','t','u','v','w','x','y','z'
+    private static final char[] toBase62 = {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     };
 
     /**
@@ -43,9 +43,7 @@ public class Base62Encode implements Encode {
     /**
      * 10진수를 2진수로 변환
      */
-    public String decimalToBinary(Integer decimal){
-        //ASCII 코드는 1바이트다.
-
+    public String decimalToBinary(Integer decimal) {
         //10진수 num을 2진수로 변환하자.
         int num = decimal;
 
@@ -55,11 +53,11 @@ public class Base62Encode implements Encode {
             if (num % 2 == 0) {
                 //나누어 떨어지면 0
                 sb.append("0");
-            }else{
+            } else {
                 //나누어 떨어지지 않으면 1
                 sb.append("1");
             }
-            num = num/2;
+            num = num / 2;
         }
 
         if (num == 1) {
@@ -86,11 +84,11 @@ public class Base62Encode implements Encode {
         //밑수
         BigInteger base = new BigInteger("2");
 
-        for (int i = charArray.length-1, j = 0 ; i >= 0 ; i--,j++) {
+        for (int i = charArray.length - 1, j = 0; i >= 0; i--, j++) {
 
             char c = charArray[j];
 
-            if(c == '1'){
+            if (c == '1') {
                 sum = sum.add(base.pow(i));
             }
         }

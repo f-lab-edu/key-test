@@ -28,7 +28,7 @@ public class EncodeService {
         return base62Str;
     }
 
-    public String encoding64(String input){
+    public String encoding64(String input) {
 
         //1.문자열 -> 2진수 변환
         String binaryStream64 = encode64.stringToBinaryStream(input);

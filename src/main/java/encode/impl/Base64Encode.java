@@ -13,7 +13,7 @@ public class Base64Encode implements Encode {
      * Base64 문자 집합
      * 주의 : 문자 순서 절대 변경 X
      */
-    private static final char[] toBase64 ={
+    private static final char[] toBase64 = {
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
             'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -44,7 +44,7 @@ public class Base64Encode implements Encode {
     /**
      * 10진수를 2진수로 변환
      */
-    public String decimalToBinary(Integer decimal){
+    public String decimalToBinary(Integer decimal) {
 
         //10진수 num을 2진수로 변환하자.
         int num = decimal;
@@ -55,11 +55,11 @@ public class Base64Encode implements Encode {
             if (num % 2 == 0) {
                 //나누어 떨어지면 0
                 sb.append("0");
-            }else{
+            } else {
                 //나누어 떨어지지 않으면 1
                 sb.append("1");
             }
-            num = num/2;
+            num = num / 2;
         }
 
         if (num == 1) {
@@ -81,11 +81,11 @@ public class Base64Encode implements Encode {
 
         char[] charArray = binaryStream.toCharArray();
 
-        for (int i = 0; i < binaryStream.length() ; i = i + 6) {
+        for (int i = 0; i < binaryStream.length(); i = i + 6) {
 
             StringBuilder sb = new StringBuilder(); //6bit로 쪼개서 저장
 
-            for (int j = i ; j < i + 6 && j < binaryStream.length() ; j++) {
+            for (int j = i; j < i + 6 && j < binaryStream.length(); j++) {
                 sb.append(charArray[j]);
             }
             arr.add(sb.toString());
@@ -107,11 +107,11 @@ public class Base64Encode implements Encode {
             char[] charArray = str.toCharArray();
             int sum = 0;
 
-            for (int i = 0 , j = charArray.length-1 ; i <charArray.length; i++, j--){
+            for (int i = 0, j = charArray.length - 1; i < charArray.length; i++, j--) {
 
                 char c = charArray[i];
-                if(c == '1'){
-                    sum = sum + (int)Math.pow(2,j);
+                if (c == '1') {
+                    sum = sum + (int) Math.pow(2, j);
                 }
 
             }
@@ -120,16 +120,20 @@ public class Base64Encode implements Encode {
 
         }
 
+        //base64는 3byte(24bit) 단위로 계산하므로 3byte씩 나누어 떨어지게 빈 공간에는 패딩값(=)을 채워줘야 함.
         int mod = sb.length() % 4;
 
         switch (mod) {
-            case 0 :
+            case 0:
                 break;
-            case 1 : sb.append("===");
+            case 1:
+                sb.append("===");
                 break;
-            case 2: sb.append("==");
+            case 2:
+                sb.append("==");
                 break;
-            case 3: sb.append("=");
+            case 3:
+                sb.append("=");
         }
 
         return sb.toString();
