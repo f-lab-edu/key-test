@@ -1,20 +1,31 @@
-import encode.impl.Base64Encode;
-import service.EncodeService;
-
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Scanner;
+import service.EncodeService;
 
 public class EncodeMain {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        final EncodeService service = new EncodeService();
+    final EncodeService service = new EncodeService();
 
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        service.encoding62(input);
-        service.encoding64(input);
+    String input = "";
 
+    Scanner sc = new Scanner(System.in);
+    input = sc.nextLine();
+
+    // 빈 칸이 입력되면 사용자가 다시 입력을 유도하도록 flow를 만들자.
+    while (input.trim().isEmpty()) {
+      System.out.println("빈 값이 입력되었습니다.문자열을 입력해주세요!!(종료를 원하시면 exit)");
+      input = sc.nextLine();
+
+      //exit 입력 후 종료
+      if (input.equals("exit")) {
+        System.out.println("문자열 입력이 종료되었습니다.");
+        return;
+      }
     }
+
+    service.encoding62(input);
+    service.encoding64(input);
+  }
+
 }
